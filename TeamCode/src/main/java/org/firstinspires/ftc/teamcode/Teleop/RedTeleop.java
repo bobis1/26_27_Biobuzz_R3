@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.follower.Follower;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -40,8 +41,7 @@ public class RedTeleop extends OpMode {
         follower = Constants.create(hardwareMap);
         nectarTurretMotor = hardwareMap.get(DcMotorEx.class, "nectarTurretMotor");
         pollenTurretMotor = hardwareMap.get(DcMotorEx.class, "pollenTurretMotor");
-
-
+        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
     }
 
     @Override
@@ -52,18 +52,21 @@ public class RedTeleop extends OpMode {
                 gamepad1.right_stick_x
         );
         if(gamepad1.xWasPressed()){
+            //Pollen Allowed
             barServoN.setPosition(pollenBarPos);
             barServoT.setPosition(pollenBarPos);
             pollenGateServo.setPosition(openPollenGatePos);
             nectarGateServo.setPosition(closedNectarGatePos);
         }
         if(gamepad1.aWasPressed()){
+            // Netrual/No game elements Allowed.
             barServoN.setPosition(neutralBarPos);
             barServoT.setPosition(neutralBarPos);
             pollenGateServo.setPosition(closedPollenGatePos);
             nectarGateServo.setPosition(closedNectarGatePos);
         }
         if(gamepad1.yWasPressed()){
+            //Nectar Pose
             barServoN.setPosition(nectarBarPos);
             barServoT.setPosition(nectarBarPos);
             pollenGateServo.setPosition(closedPollenGatePos);
